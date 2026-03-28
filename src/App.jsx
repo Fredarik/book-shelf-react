@@ -69,6 +69,7 @@ const initialBooks = [
 
 function App() {
   const [books, setBooks] = useState(initialBooks);
+  const [filter, setFilter] = useState('all');
 
   const toggleBookStatus = (id) => {
     setBooks(prevBooks => 
@@ -78,12 +79,24 @@ function App() {
     );
   };
 
+  const filteredBooks = books.filter(book => {
+    if (filter === 'active') return !book.completed;
+    if (filter === 'completed') return book.completed;
+    return true;
+  });
+
   const completedCount = books.filter(b => b.completed).length;
 
   return (
     <div className="app">
       <Header completedCount={completedCount} />
-      <Main books={books} onToggle={toggleBookStatus} />
+      <Main 
+        books={filteredBooks} 
+        allBooksCount={books.length}
+        onToggle={toggleBookStatus} 
+        currentFilter={filter}
+        onFilterChange={setFilter}
+      />
       <Footer />
     </div>
   );
