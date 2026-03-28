@@ -1,16 +1,75 @@
-# React + Vite
+# Книжкова Полиця (Book Shelf) — React-застосунок
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Проєкт створено в рамках **Практичної роботи №1** з курсу розробки інтерфейсів на React. Це сучасна віртуальна бібліотека для керування вашою колекцією книг.
 
-Currently, two official plugins are available:
+![Preview](https://i.ibb.co/68fDkCg/gatsby.jpg) <!-- Приклад зображення обкладинки -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+##  Про проєкт
 
-## React Compiler
+"Книжкова Полиця" — це SPA (Single Page Application), розгорнуте за допомогою **Vite**. Застосунок демонструє компонентний підхід React, роботу зі статичними даними та семантичну верстку.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Основні функції:
+- **Відображення списку книг**: Рендеринг карток за допомогою методу `.map()`.
+- **Детальна інформація**: Назва, автор, жанр та рік видання для кожної книги.
+- **Статуси читання**: Кольорові бейджі ("Читаю", "Прочитано", "Планую", "Список бажань").
+- **Сучасний дизайн**: Використання CSS-змінних, тіней та адаптивної сітки (Grid/Flexbox).
+- **Повна локалізація**: Увесь інтерфейс перекладено українською мовою.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠 Технології
+
+- **React 19**
+- **Vite** (Build tool)
+- **Vanilla CSS** (Дизайн-система на основі змінних)
+- **HTML5** (Семантична структура: header, main, footer)
+
+---
+
+##  Як запустити проєкт
+
+Щоб розгорнути цей проєкт локально, виконайте наступні кроки:
+
+1. **Клонуйте репозиторій:**
+   ```bash
+   git clone https://github.com/Fredarik/book-shelf-react.git
+   ```
+
+2. **Перейдіть у папку проєкту:**
+   ```bash
+   cd book-shelf-react
+   ```
+
+3. **Встановіть залежності:**
+   ```bash
+   npm install
+   ```
+
+4. **Запустіть сервер розробки:**
+   ```bash
+   npm run dev
+   ```
+
+Після цього відкрийте браузер за адресою `http://localhost:5173`.
+
+---
+
+##  Структура папок
+
+```text
+src/
+├── components/   # Реакт-компоненти (Header, Main, BookList, тощо)
+├── assets/       # Статичні ресурси (зображення, іконки)
+├── styles/       # Додаткові стилі (опціонально)
+├── App.jsx       # Головний компонент
+├── main.jsx      # Точка входу в застосунок
+└── index.css     # Глобальні стилі та CSS-змінні
+```
+
+---
+
+##  Автори
+
+Створено студентом: **[Федоров В.С]**
+
+
