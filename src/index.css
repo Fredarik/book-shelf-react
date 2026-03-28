@@ -1,0 +1,43 @@
+:root {
+  --primary: #5d4037; /* Coffee/Wood brown */
+  --primary-light: #8b6b61;
+  --secondary: #ffc107; /* Gold/Amber */
+  --bg-color: #f5f5f7; /* Very light gray/Paper */
+  --card-bg: #ffffff;
+  --text-main: #212121;
+  --text-muted: #757575;
+  --accent: #2e7d32; /* Leaf/Forest green */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
