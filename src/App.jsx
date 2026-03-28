@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Footer from './components/Footer.jsx';
 import './App.css';
 
-const booksData = [
+const initialBooks = [
   {
     id: 1,
     title: "Великий Гетсбі",
@@ -12,7 +12,8 @@ const booksData = [
     genre: "Класика",
     year: 1925,
     coverUrl: "https://i.ibb.co/68fDkCg/gatsby.jpg",
-    status: "To Read"
+    status: "To Read",
+    completed: false
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ const booksData = [
     genre: "Антиутопія",
     year: 1949,
     coverUrl: "https://i.ibb.co/8Ym8x4m/1984.jpg",
-    status: "Reading"
+    status: "Reading",
+    completed: true
   },
   {
     id: 3,
@@ -30,7 +32,8 @@ const booksData = [
     genre: "Фентезі",
     year: 1937,
     coverUrl: "https://i.ibb.co/r7XW6n2/hobbit.jpg",
-    status: "Completed"
+    status: "Completed",
+    completed: true
   },
   {
     id: 4,
@@ -39,7 +42,8 @@ const booksData = [
     genre: "Наукова фантастика",
     year: 1932,
     coverUrl: "https://i.ibb.co/zXqNf08/brave-new-world.jpg",
-    status: "Wishlist"
+    status: "Wishlist",
+    completed: false
   },
   {
     id: 5,
@@ -48,7 +52,8 @@ const booksData = [
     genre: "Художня література",
     year: 1960,
     coverUrl: "https://i.ibb.co/hK5S8C6/mockingbird.jpg",
-    status: "To Read"
+    status: "To Read",
+    completed: false
   },
   {
     id: 6,
@@ -57,15 +62,28 @@ const booksData = [
     genre: "Реалізм",
     year: 1951,
     coverUrl: "https://i.ibb.co/5G78Lrk/catcher.jpg",
-    status: "Reading"
+    status: "Reading",
+    completed: false
   }
 ];
 
 function App() {
+  const [books, setBooks] = useState(initialBooks);
+
+  const toggleBookStatus = (id) => {
+    setBooks(prevBooks => 
+      prevBooks.map(book => 
+        book.id === id ? { ...book, completed: !book.completed } : book
+      )
+    );
+  };
+
+  const completedCount = books.filter(b => b.completed).length;
+
   return (
     <div className="app">
-      <Header />
-      <Main books={booksData} />
+      <Header completedCount={completedCount} />
+      <Main books={books} onToggle={toggleBookStatus} />
       <Footer />
     </div>
   );
