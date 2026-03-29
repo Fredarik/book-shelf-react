@@ -71,6 +71,14 @@ function App() {
   const [books, setBooks] = useState(initialBooks);
   const [filter, setFilter] = useState('all');
 
+  const addBook = (newBook) => {
+    setBooks(prevBooks => [...prevBooks, newBook]);
+  };
+
+  const removeBook = (id) => {
+    setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
+  };
+
   const toggleBookStatus = (id) => {
     setBooks(prevBooks => 
       prevBooks.map(book => 
@@ -93,6 +101,8 @@ function App() {
       <Main 
         books={filteredBooks} 
         allBooksCount={books.length}
+        onAdd={addBook}
+        onRemove={removeBook}
         onToggle={toggleBookStatus} 
         currentFilter={filter}
         onFilterChange={setFilter}
