@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header.jsx';
 import Main from './components/Main.jsx';
 import Footer from './components/Footer.jsx';
@@ -68,20 +68,34 @@ const initialBooks = [
 ];
 
 function App() {
-  const [books, setBooks] = useState(initialBooks);
+  // Ініціалізація стану з localStorage
+  const [books, setBooks] = useState(() => {
+    const storedData = localStorage.getItem('books-data');
+    return storedData ? JSON.parse(storedData) : initialBooks;
+  });
+
   const [filter, setFilter] = useState('all');
+
+  // Збереження даних у localStorage 
+  useEffect(() => {
+    localStorage.setItem('books-data', JSON.stringify(books));
+  }, [books]);
 
   const addBook = (newBook) => {
     setBooks(prevBooks => [...prevBooks, newBook]);
   };
 
   const removeBook = (id) => {
+    const bookToDelete = books.find(b => b.id === id);
+    if (!window.confirm(`Ви впевнені, що хочете видалити книгу "${bookToDelete.title}"?`)) {
+      return;
+    }
     setBooks(prevBooks => prevBooks.filter(book => book.id !== id));
   };
 
   const toggleBookStatus = (id) => {
-    setBooks(prevBooks => 
-      prevBooks.map(book => 
+    setBooks(prevBooks =>
+      prevBooks.map(book =>
         book.id === id ? { ...book, completed: !book.completed } : book
       )
     );
@@ -98,12 +112,12 @@ function App() {
   return (
     <div className="app">
       <Header completedCount={completedCount} />
-      <Main 
-        books={filteredBooks} 
+      <Main
+        books={filteredBooks}
         allBooksCount={books.length}
         onAdd={addBook}
         onRemove={removeBook}
-        onToggle={toggleBookStatus} 
+        onToggle={toggleBookStatus}
         currentFilter={filter}
         onFilterChange={setFilter}
       />
