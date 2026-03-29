@@ -1,7 +1,7 @@
 import BookList from './BookList.jsx';
+import AddBookForm from './AddBookForm.jsx';
 
-
-export default function Main({ books }) {
+export default function Main({ books, allBooksCount, onAdd, onRemove, onToggle, currentFilter, onFilterChange }) {
   return (
     <main className="main-content">
       <div className="container">
@@ -11,12 +11,42 @@ export default function Main({ books }) {
             <p>Керуйте колекцією, відстежуйте прогрес і знаходьте нове.</p>
           </div>
           <div className="hero-stats">
-            <div className="stat"><span>{books.length}</span> Усього книг</div>
-            <div className="stat"><span>12</span> Прочитано</div>
-            <div className="stat"><span>3</span> У процесі</div>
+             <div className="stat"><span>{allBooksCount}</span> Усього</div>
+             <div className="stat highlight">
+                <span>{currentFilter === 'all' ? books.length : '—'}</span> Поточне меню
+             </div>
           </div>
         </section>
-        <BookList books={books} />
+
+        <AddBookForm onAdd={onAdd} />
+
+        <section className="filter-bar">
+           <div className="filter-group">
+              <button 
+                className={`filter-btn ${currentFilter === 'all' ? 'active' : ''}`}
+                onClick={() => onFilterChange('all')}
+              >
+                Усі
+              </button>
+              <button 
+                className={`filter-btn ${currentFilter === 'active' ? 'active' : ''}`}
+                onClick={() => onFilterChange('active')}
+              >
+                Читаю
+              </button>
+              <button 
+                className={`filter-btn ${currentFilter === 'completed' ? 'active' : ''}`}
+                onClick={() => onFilterChange('completed')}
+              >
+                Прочитано
+              </button>
+           </div>
+           <p className="filter-info">
+              Показано: <strong>{books.length}</strong> з {allBooksCount} книг
+           </p>
+        </section>
+
+        <BookList books={books} onToggle={onToggle} onRemove={onRemove} />
       </div>
     </main>
   );
