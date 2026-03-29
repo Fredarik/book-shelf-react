@@ -14,9 +14,6 @@ export default function Footer() {
             <li><a href="#github">GitHub</a></li>
           </ul>
         </div>
-        <div className="footer-bottom">
-          <p>&copy; 2026 Влад. Усі права захищені. Академічна практика React.</p>
-        </div>
       </div>
     </footer>
   );
