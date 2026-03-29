@@ -8,7 +8,7 @@ export default function AddBookForm({ onAdd }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    // Валідація: перевірка на порожню назву
+    // Валідація
     if (!title.trim() || !author.trim()) return;
 
     const newBook = {
