@@ -1,4 +1,4 @@
-export default function BookCard({ book, onToggle }) {
+export default function BookCard({ book, onToggle, onRemove }) {
   const { id, title, author, genre, year, coverUrl, status, completed } = book;
 
   const statusMap = {
@@ -11,6 +11,7 @@ export default function BookCard({ book, onToggle }) {
   return (
     <article className={`book-card ${completed ? 'is-completed' : ''}`}>
       <div className="book-cover">
+        <button className="remove-btn" onClick={() => onRemove(id)} title="Видалити">×</button>
         <img src={coverUrl} alt={title} style={completed ? { filter: 'grayscale(100%)', opacity: 0.6 } : {}} />
         {status && <span className={`badge badge-${status.toLowerCase().replace(' ', '-')}`}>{statusMap[status] || status}</span>}
         <div className="book-checkbox-overlay">
